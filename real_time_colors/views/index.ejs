@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        button {
+            display: inline-block;
+            margin: 10px;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        body {
+            margin: auto;
+        }
+
+        .container{
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type ="text/javascript">
+    $(document).ready(function (){
+
+        var socket = io(); 
+
+        $('button').click(function(){
+            socket.emit('button_click', {color: $(this).attr('id')});
+        });
+
+        socket.on('update_color', function(data){
+            if (data.color == 'green'){
+                $('body').css("background-color", "green");
+            }
+            else if (data.color == 'blue'){
+                $('body').css('background-color', 'blue');
+            }
+            else if (data.color == 'pink'){
+                $('body').css('background-color', 'pink');
+            }
+        });
+  
+    });
+</script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <button id="green">Green</button>
+
+        <button id="blue">Blue</button>
+
+        <button id="pink">Pink</button>
+
+
+    </div>
+    
+</body>
+</html>

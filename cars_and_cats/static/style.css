@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+img {
+    width: 500px;
+    height: auto;
+}
